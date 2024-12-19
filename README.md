@@ -1,7 +1,6 @@
+## Organic Views counter in Go
 
-Organic Views counter in Go
-
-An example how to integrate into Gin API. You should create a middleware handler
+An example how you can integrate viewscounter into Gin API. You should create a middleware handler
 
 ```go
 
@@ -10,13 +9,14 @@ package middlewares
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/mikebionic/viewscount"
 	"time"
 )
 
-var viewTracker *ViewTracker
+var viewTracker *viewscount.ViewTracker
 
 func InitializeViewTracker(db interface{}, minutesGap time.Duration) {
-	viewTracker = NewViewTracker(db, minutesGap)
+	viewTracker = viewscount.NewViewTracker(db, minutesGap)
 }
 
 func ViewCounterMiddleware(tableName string) gin.HandlerFunc {
@@ -38,4 +38,18 @@ func ViewCounterMiddleware(tableName string) gin.HandlerFunc {
 }
 
 
+
+```
+
+In your main app you should import created middleware and configure the database (supports sql.DB and pgxscann.DB)
+
+```go
+func main() {
+	//...
+	middlewares.InitializeViewTracker(database.DB, 10)	
+
+	// some routers controllers:
+	router.GET("/:id", middlewares.ViewCounterMiddleware("tbl_driver"), services.GetDriver)
+	//...
+}
 ```

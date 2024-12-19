@@ -1,7 +1,6 @@
 ## Organic Views counter in Go
 
 An example how you can integrate viewscounter into Gin API. You should create a middleware handler
-
 ```go
 
 package middlewares
@@ -53,3 +52,5 @@ func main() {
 	//...
 }
 ```
+
+![](https://go.dev/blog/gophergala/fancygopher.jpg)

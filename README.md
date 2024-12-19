@@ -1,5 +1,29 @@
 ## Organic Views counter in Go
 
+Imagine you have tables with a **view_count** column, but you don't want to write separate api for them and you want to prevent DOS type increment. This library is a solution for you.
+
+```sql
+CREATE TABLE tbl_driver
+(
+    id              SERIAL PRIMARY KEY,
+    first_name      VARCHAR(100) NOT NULL DEFAULT '',
+    view_count      INT          NOT NULL DEFAULT 0,
+    deleted         INT          NOT NULL DEFAULT 0
+);
+
+CREATE TABLE tbl_vehicle
+(
+    id              SERIAL PRIMARY KEY,
+    numberplate      VARCHAR(100) NOT NULL DEFAULT '',
+    view_count      INT          NOT NULL DEFAULT 0,
+    deleted         INT          NOT NULL DEFAULT 0
+);
+
+
+```
+
+---
+
 An example how you can integrate viewscounter into Gin API. You should create a middleware handler
 ```go
 

@@ -1,5 +1,28 @@
 ## Organic Views counter in Go
 
+**A unified, secure, and framework-agnostic view counter for any Golang web application.**
+Tracks organic views across multiple tables without creating separate APIs for each one.
+Protects against DoS-style repeated increments while remaining lightweight and easy to integrate.
+
+![ViewsCounter](https://miro.medium.com/v2/resize:fit:720/format:webp/1*gvBUK2uyc335LpHQJzbiDQ.png)
+
+## Why ViewCounter?
+
+In many applications, you need to track views for different entities — articles, videos, products, or profiles.
+Traditionally, you’d have to write **separate APIs** for each table with a `view_count` column.
+This approach is repetitive, error-prone, and hard to maintain.
+
+**ViewCounter solves this by:**
+
+* Providing **one unified middleware** to track views for any table.
+* Working with **any Golang web framework** (Gin, Chi, net/http, etc.).
+* Offering **DoS protection** by ignoring rapid repeat requests from the same user/device.
+* Being **database-agnostic** (PostgreSQL support included).
+
+[Medium Article](https://medium.com/@mecreate/how-i-developed-the-viewscount-library-solving-the-problem-of-organic-view-counting-in-golang-0b1f6e1b19d7)
+
+---
+
 Imagine you have tables with a **view_count** column, but you don't want to write separate api for them and you want to prevent DOS type increment. This library is a solution for you.
 
 ```sql
